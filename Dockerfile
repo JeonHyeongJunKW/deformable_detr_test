@@ -5,18 +5,21 @@ ENV TORCH_CUDA_ARCH_LIST=7.5
 
 WORKDIR /workspace
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    ninja-build \
-    git \
+RUN rm -f \
+      /etc/apt/sources.list.d/cuda.list \
+      /etc/apt/sources.list.d/nvidia-ml.list \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+      build-essential \
+      ninja-build \
+      git \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt ./
 
-# 오래된 Deformable DETR 코드와 최신 NumPy/Cython 간 충돌 방지
 RUN python -m pip install --no-cache-dir \
-    "numpy<1.24" \
-    "cython<3" \
+      "numpy<1.24" \
+      "cython<3" \
     && python -m pip install --no-cache-dir -r requirements.txt
 
 CMD ["/bin/bash"]
