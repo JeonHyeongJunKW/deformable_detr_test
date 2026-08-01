@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+set -e
+
 docker run --rm -it \
   --gpus all \
   --shm-size=8g \
