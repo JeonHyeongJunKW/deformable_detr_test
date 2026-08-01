@@ -23,3 +23,5 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 1
 # 6. PyTorch 1.5.1 및 Torchvision 0.6.1 (CUDA 10.2 버전 - cu102) 설치
 RUN pip install torch==1.5.1+cu102 torchvision==0.6.1+cu102 -f https://download.pytorch.org/whl/torch_stable.html
 RUN pip install -r requirements.txt
+
+CMD ["/bin/bash"]
